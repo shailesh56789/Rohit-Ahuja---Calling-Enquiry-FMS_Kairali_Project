@@ -11,85 +11,72 @@ import java.time.LocalDateTime;
 @Table(name="Rohit_Ahuja-Calling Enquiry_Table")
 @EntityListeners(AutoTrimListener.class)
 public class CallingEnquiry {
-    // ---------- Identity ----------
     @Column(name = "time_stamp")
     private LocalDateTime timeStamp;
     @Column(name = "date_time")
     private LocalDateTime dateTime;
     @Id
     @Column(name = "id",nullable = false)
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 30)
     private String id;
-    // ---------- Date & Time ----------
-    // ---------- Client Details ----------
     @Column(name = "name_of_client")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 35)
     private String nameOfClient;
     @Column(name = "mobile")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 25)
     private String mobile;
     @Column(name = "email_id")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 50)
     private String emailId;
-    // ---------- Enquiry Details ----------
     @Column(name = "subject")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 255)
     private String subject;
     @Column(name = "notes", columnDefinition = "TEXT")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 1025)
     private String notes;
     @Column(name = "ivr_url")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 225)
     private String ivrUrl;
     @Column(name = "website_name")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 100)
     private String websiteName;
     @Column(name = "data_source")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 100)
     private String dataSource;
-    // ---------- Assignment ----------
     @Column(name = "assign_to_mr")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 60)
     private String assignToMr;
     @Column(name = "remarks_history", columnDefinition = "TEXT")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 1025)
     private String remarksHistory;
-    // ---------- Planning ----------
     @Column(name = "planned_date")
     private LocalDate planned;
     @Column(name = "actual_date")
     private LocalDate actual;
     @Column(name = "time_delay")
-    @AutoTrim(max = 5)
-    private String timeDelay;
+    private LocalDate timeDelay;
     @Column(name = "status")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String status;
-    // ---------- Followup ---------
     @Column(name = "SampleNew_Order_Form_Link")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 225)
     private String SampleNew_Order_Form_Link;  //?
-    @Column(name = "reservation_id")
-    @AutoTrim(max = 5)
-    private String reservationId;
     @Column(name = "followup")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 225)
     private String followup;
     @Column(name = "remarks", columnDefinition = "TEXT")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 211)
     private String remarks;
     @Column(name = "followup_date")
     private LocalDate followupDate;
-    // ---------- Transfer ----------
     @Column(name = "transfer_to")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String transferTo;
-    // ---------- Default Contact ----------
     @Column(name = "default_contact_no")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String defaultContactNo;
     @Column(name = "default_email_id")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String defaultEmailId;
     // ---------- Communication Flags ----------
     @Column(name = "email_sent")
@@ -99,85 +86,83 @@ public class CallingEnquiry {
     @Column(name = "sms_sent")
     private Boolean smsSent;
     @Column(name = "count_id")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String count_id;
     @Column(name = "email_sent_status")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String emailSentStatus;
     @Column(name = "whatsapp_sent_status")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String whatsappSentStatus;
     @Column(name = "sms_sent_status")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String smsSentStatus;
     @Column(name = "order_sales_saved_staus")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String order_sales_saved_status;
     // ---------- Status ----------
-    @Column(name = "transfer_status")
-    @AutoTrim(max = 5)
-    private String transferStatus;
-    @Column(name = "blank3")
-    @AutoTrim(max = 5)
-    private String blank3;
-    private Boolean logout;
+    @Column(name="from_sheet")
+    @AutoTrim(max = 55)
+    private String fromSheet;
+    @Column(name = "blank1")
+    @AutoTrim(max = 55)
+    private String blank1;
+
     // ---------- Lead Details ----------
     @Column(name = "sqv_lead_intent")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String sqvLeadIntent;
     @Column(name = "lead_priority")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String leadPriority;
+    @Column(name = "duplicate")
+    @AutoTrim(max = 55)
     private Boolean duplicate;
     @Column(name = "client_category")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String clientCategory;
 
     //-----------cheking
-    @Column(name = "blank1")
-    @AutoTrim(max = 5)
-    private String blank1;
+    @Column(name = "blank2")
+    @AutoTrim(max = 55)
+    private String blank2;
+    @Column(name = "blank3")
+    @AutoTrim(max = 55)
+    private String blank3;
     @Column(name = "blank4")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String blank4;
     @Column(name = "blank5")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String blank5;
     @Column(name = "blank6")
-    @AutoTrim(max = 5)
+    @AutoTrim(max = 55)
     private String blank6;
-    @Column(name = "blank7")
-    @AutoTrim(max = 5)
-    private String blank7;
     @Column(name = "transfer_to_sql_table")
     private Boolean transferToSqlTable;
 
-    @Column(name = "google_drive_call_recording_url", length = 1000)
+    @Column(name = "google_drive_call_recording_url")
+    @AutoTrim(max=55)
     private String googleDriveCallRecordingUrl;
 
-    @Column(name = "row_duplicate_mark")
-    private Boolean rowDuplicateMark;
-
+    @Column(name = "blank7")
+    @AutoTrim(max = 55)
+    private Boolean blank7;
     @Column(name = "call_time")
     private LocalDateTime callTime;
-
     @Column(name = "file_size")
-    private Long fileSize;
+    @AutoTrim(max =55)
+    private String fileSize;
 
     @Column(name = "recording_not_found_exception")
+    @AutoTrim(max =55)
     private String recordingNotFoundException;
 
     @Column(name = "nbd_crr_call")
+    @AutoTrim(max =55)
     private String nbdCrrCall;
     //-----------cheking
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public LocalDateTime getTimeStamp() {
         return timeStamp;
@@ -193,6 +178,14 @@ public class CallingEnquiry {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNameOfClient() {
@@ -291,11 +284,11 @@ public class CallingEnquiry {
         this.actual = actual;
     }
 
-    public String getTimeDelay() {
+    public LocalDate getTimeDelay() {
         return timeDelay;
     }
 
-    public void setTimeDelay(String timeDelay) {
+    public void setTimeDelay(LocalDate timeDelay) {
         this.timeDelay = timeDelay;
     }
 
@@ -307,12 +300,12 @@ public class CallingEnquiry {
         this.status = status;
     }
 
-    public String getReservationId() {
-        return reservationId;
+    public String getSampleNew_Order_Form_Link() {
+        return SampleNew_Order_Form_Link;
     }
 
-    public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
+    public void setSampleNew_Order_Form_Link(String sampleNew_Order_Form_Link) {
+        SampleNew_Order_Form_Link = sampleNew_Order_Form_Link;
     }
 
     public String getFollowup() {
@@ -387,6 +380,13 @@ public class CallingEnquiry {
         this.smsSent = smsSent;
     }
 
+    public String getCount_id() {
+        return count_id;
+    }
+
+    public void setCount_id(String count_id) {
+        this.count_id = count_id;
+    }
 
     public String getEmailSentStatus() {
         return emailSentStatus;
@@ -412,29 +412,28 @@ public class CallingEnquiry {
         this.smsSentStatus = smsSentStatus;
     }
 
-
-    public String getTransferStatus() {
-        return transferStatus;
+    public String getOrder_sales_saved_status() {
+        return order_sales_saved_status;
     }
 
-    public void setTransferStatus(String transferStatus) {
-        this.transferStatus = transferStatus;
+    public void setOrder_sales_saved_status(String order_sales_saved_status) {
+        this.order_sales_saved_status = order_sales_saved_status;
     }
 
-    public String getBlank3() {
-        return blank3;
+    public String getFromSheet() {
+        return fromSheet;
     }
 
-    public void setBlank3(String blank3) {
-        this.blank3 = blank3;
+    public void setFromSheet(String fromSheet) {
+        this.fromSheet = fromSheet;
     }
 
-    public Boolean getLogout() {
-        return logout;
+    public String getBlank1() {
+        return blank1;
     }
 
-    public void setLogout(Boolean logout) {
-        this.logout = logout;
+    public void setBlank1(String blank1) {
+        this.blank1 = blank1;
     }
 
     public String getSqvLeadIntent() {
@@ -467,5 +466,101 @@ public class CallingEnquiry {
 
     public void setClientCategory(String clientCategory) {
         this.clientCategory = clientCategory;
+    }
+
+    public String getBlank2() {
+        return blank2;
+    }
+
+    public void setBlank2(String blank2) {
+        this.blank2 = blank2;
+    }
+
+    public String getBlank3() {
+        return blank3;
+    }
+
+    public void setBlank3(String blank3) {
+        this.blank3 = blank3;
+    }
+
+    public String getBlank4() {
+        return blank4;
+    }
+
+    public void setBlank4(String blank4) {
+        this.blank4 = blank4;
+    }
+
+    public String getBlank5() {
+        return blank5;
+    }
+
+    public void setBlank5(String blank5) {
+        this.blank5 = blank5;
+    }
+
+    public String getBlank6() {
+        return blank6;
+    }
+
+    public void setBlank6(String blank6) {
+        this.blank6 = blank6;
+    }
+
+    public Boolean getTransferToSqlTable() {
+        return transferToSqlTable;
+    }
+
+    public void setTransferToSqlTable(Boolean transferToSqlTable) {
+        this.transferToSqlTable = transferToSqlTable;
+    }
+
+    public String getGoogleDriveCallRecordingUrl() {
+        return googleDriveCallRecordingUrl;
+    }
+
+    public void setGoogleDriveCallRecordingUrl(String googleDriveCallRecordingUrl) {
+        this.googleDriveCallRecordingUrl = googleDriveCallRecordingUrl;
+    }
+
+    public Boolean getBlank7() {
+        return blank7;
+    }
+
+    public void setBlank7(Boolean blank7) {
+        this.blank7 = blank7;
+    }
+
+    public LocalDateTime getCallTime() {
+        return callTime;
+    }
+
+    public void setCallTime(LocalDateTime callTime) {
+        this.callTime = callTime;
+    }
+
+    public String getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(String fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getRecordingNotFoundException() {
+        return recordingNotFoundException;
+    }
+
+    public void setRecordingNotFoundException(String recordingNotFoundException) {
+        this.recordingNotFoundException = recordingNotFoundException;
+    }
+
+    public String getNbdCrrCall() {
+        return nbdCrrCall;
+    }
+
+    public void setNbdCrrCall(String nbdCrrCall) {
+        this.nbdCrrCall = nbdCrrCall;
     }
 }
