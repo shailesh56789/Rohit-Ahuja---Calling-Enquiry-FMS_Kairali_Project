@@ -54,6 +54,27 @@ public class CallingEnquiryController {
 
 
     }
+    /*
+    GET /api/marketing/search?keyword=test@gmail.com
+GET /api/marketing/search?keyword=9876543210
+                http://localhost:8080/api/search?emailId=rahul.sharma@gmail.com
+     */
+    @GetMapping("/search")
+    public ResponseEntity<?> search(
+            @RequestParam(required = false) String emailId,
+            @RequestParam(required = false) String mobile) {
+
+        if (emailId != null && !emailId.isEmpty()) {
+            return ResponseEntity.ok(callingEnquiryService.getAllByEmail(emailId));
+        }
+
+        if (mobile != null && !mobile.isEmpty()) {
+            return ResponseEntity.ok(callingEnquiryService.getAllByPhoneNo(mobile));
+        }
+
+        return ResponseEntity.badRequest()
+                .body("Email or Mobile is required");
+    }
     //http://localhost:8080/api/name/Rohit Ahuja
     @GetMapping("/name/{nameOfClient}")
     public ResponseEntity<List<CallingEnquiry>> fetchByName(@PathVariable String nameOfClient)
