@@ -2,7 +2,12 @@ package com.Kairali.Rohit.Ahuja.Calling.Enquiry.controller;
 
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.domain.CallingEnquiry;
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.service.CallingEnquiryService;
+import org.springframework.data.domain.Page;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +28,12 @@ public class CallingEnquiryController {
         callingEnquiryService.saveCallingEnquiryData(callingEnquiryList);
         return new ResponseEntity<>("Calling data saved successfully", HttpStatus.OK);
     }
-
-  /*  @GetMapping(value = "/fetch", produces = "application/json")
-    public ResponseEntity<List<CallingEnquiry>> fetchAll()
+    @GetMapping("/All")
+    public  ResponseEntity<Page<CallingEnquiry>> fetchAll()
     {
-        return ResponseEntity.ok(callingEnquiryService.);
-    }              */
+        Pageable page = PageRequest.of(0,50);
+        return ResponseEntity.ok(callingEnquiryService.getAll(page));
+    }
     @GetMapping(value = "/id/{id}", produces = "application/json")
     public ResponseEntity<List<CallingEnquiry>> fetchById(@PathVariable String id)
     {
@@ -53,23 +58,34 @@ public class CallingEnquiryController {
         return ResponseEntity.ok(result);
 
 
+
     }
     /*
-    GET /api/marketing/search?keyword=test@gmail.com
+GET /api/marketing/search?keyword=test@gmail.com
 GET /api/marketing/search?keyword=9876543210
-                http://localhost:8080/api/search?emailId=rahul.sharma@gmail.com
-     */
+            http://localhost:8080/api/search?emailId=rahul.sharma@gmail.com
+ */
     @GetMapping("/search")
     public ResponseEntity<?> search(
             @RequestParam(required = false) String emailId,
-            @RequestParam(required = false) String mobile) {
+            @RequestParam(required = false) String mobile,
+            @RequestParam(required = false) String id,
+            @RequestParam(required = false) String nameOfClient){
 
         if (emailId != null && !emailId.isEmpty()) {
             return ResponseEntity.ok(callingEnquiryService.getAllByEmail(emailId));
         }
+        if(id != null && !id.isEmpty())
+        {
+            return ResponseEntity.ok(callingEnquiryService.getAllById(id));
+        }
 
         if (mobile != null && !mobile.isEmpty()) {
             return ResponseEntity.ok(callingEnquiryService.getAllByPhoneNo(mobile));
+        }
+        if(nameOfClient != null && !nameOfClient.isEmpty())
+        {
+            return ResponseEntity.ok(callingEnquiryService.getAllByName(nameOfClient));
         }
 
         return ResponseEntity.badRequest()
