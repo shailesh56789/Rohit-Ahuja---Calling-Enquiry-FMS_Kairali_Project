@@ -2,6 +2,7 @@ package com.Kairali.Rohit.Ahuja.Calling.Enquiry.service;
 
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.domain.CallingEnquiry;
 
+import com.Kairali.Rohit.Ahuja.Calling.Enquiry.dto.CallingEnquirySheetDTO;
 import org.springframework.boot.data.autoconfigure.web.DataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -20,4 +21,5 @@ public interface CallingEnquiryService {
     public List<CallingEnquiry> getAllByPhoneNo(String phoneNo);
     public List<CallingEnquiry> getAllByEmail(String email);
    public Page<CallingEnquiry> getAll(Pageable pageable);
+    public void saveFromSheet(List<CallingEnquirySheetDTO> sheetData);
 }
