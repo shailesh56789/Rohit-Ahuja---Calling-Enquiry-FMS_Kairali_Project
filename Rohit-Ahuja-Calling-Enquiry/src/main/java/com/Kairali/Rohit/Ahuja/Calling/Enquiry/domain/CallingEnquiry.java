@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="Rohit_Ahuja-Calling Enquiry_Table")
 @EntityListeners(AutoTrimListener.class)
-public class CallingEnquiry {
+public class CallingEnquiry implements Serializable {
     @Column(name = "time_stamp")
     private LocalDateTime timeStamp;
     @Column(name = "date_time")
