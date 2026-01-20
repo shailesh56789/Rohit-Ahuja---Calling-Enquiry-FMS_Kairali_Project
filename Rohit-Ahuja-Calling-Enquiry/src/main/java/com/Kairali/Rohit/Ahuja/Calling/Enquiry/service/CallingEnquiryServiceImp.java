@@ -1,6 +1,8 @@
 package com.Kairali.Rohit.Ahuja.Calling.Enquiry.service;
 
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.domain.CallingEnquiry;
+import com.Kairali.Rohit.Ahuja.Calling.Enquiry.dto.CallingEnquirySheetDTO;
+import com.Kairali.Rohit.Ahuja.Calling.Enquiry.normalization.CallingEnquiryNormalizer;
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.repository.CallingEnquiryRepo;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -26,10 +28,17 @@ import java.util.Set;
 public class CallingEnquiryServiceImp implements CallingEnquiryService {
     @Autowired
     private CallingEnquiryRepo callingEnquiryRepo;
+    private final CallingEnquiryNormalizer normalizer;
 
-    public CallingEnquiryServiceImp(CallingEnquiryRepo callingEnquiryRepo) {
+    public CallingEnquiryServiceImp(CallingEnquiryRepo callingEnquiryRepo,CallingEnquiryNormalizer normalizer) {
         this.callingEnquiryRepo = callingEnquiryRepo;
+        this.normalizer=normalizer;
     }
+    public void saveFromSheet(List<CallingEnquirySheetDTO> sheetData) {
+               List<CallingEnquiry> entities = sheetData.stream().map(normalizer::toEntity).toList();
+               callingEnquiryRepo.saveAll(entities);
+    }
+
     @Override
     public ResponseEntity<?> saveCallingEnquiryData(List<CallingEnquiry> callingEnquiryList) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
