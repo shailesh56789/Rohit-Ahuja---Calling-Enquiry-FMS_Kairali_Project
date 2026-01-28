@@ -1,6 +1,7 @@
 package com.Kairali.Rohit.Ahuja.Calling.Enquiry.controller;
 
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.domain.CallingEnquiry;
+import com.Kairali.Rohit.Ahuja.Calling.Enquiry.dto.CallingEnquirySheetDTO;
 import com.Kairali.Rohit.Ahuja.Calling.Enquiry.service.CallingEnquiryService;
 import org.springframework.data.domain.Page;
 
@@ -22,6 +23,20 @@ public class CallingEnquiryController {
 
     public CallingEnquiryController(CallingEnquiryService callingEnquiryService) {
         this.callingEnquiryService = callingEnquiryService;
+    }
+    @PostMapping("/insert2")
+    public ResponseEntity<?> insert2(
+            @RequestBody List<CallingEnquiry> sheetData) {
+                  System.out.println(sheetData.getFirst());
+       // callingEnquiryService.save1(sheetData);
+        return ResponseEntity.ok("Calling Enquiry data saved successfully");
+    }
+    @PostMapping("/insert1")
+    public ResponseEntity<String> insert(
+            @RequestBody List<CallingEnquirySheetDTO> sheetData) {
+
+        callingEnquiryService.saveFromSheet(sheetData);
+        return ResponseEntity.ok("Calling Enquiry data saved successfully");
     }
     @PostMapping("/insert")
     public ResponseEntity<?> insertMarketing(@RequestBody List<CallingEnquiry> callingEnquiryList) {
