@@ -22,4 +22,5 @@ public interface CallingEnquiryService {
     public List<CallingEnquiry> getAllByEmail(String email);
    public Page<CallingEnquiry> getAll(Pageable pageable);
     public void saveFromSheet(List<CallingEnquirySheetDTO> sheetData);
+    public void save1(List<CallingEnquiry>  Ldata);
 }
