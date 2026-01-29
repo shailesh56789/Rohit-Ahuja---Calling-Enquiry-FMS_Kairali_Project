@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class CallingEnquiryNormalizer {
@@ -43,7 +44,7 @@ public class CallingEnquiryNormalizer {
         e.setWhatsappSent(bool(d.whatsappSent));
         e.setSmsSent(bool(d.smsSent));
         e.setDuplicate(bool(d.duplicate));
-        e.setTransferToSqlTable(bool(d.transferToSqlTable));
+        e.setTransferToSqlTable(dateTime(d.transferToSqlTable));
 
         e.setCount_id(str(d.count_id));
         e.setEmailSentStatus(str(d.emailSentStatus));
@@ -59,6 +60,7 @@ public class CallingEnquiryNormalizer {
         e.setBlank5(str(d.blank5));
         e.setBlank6(str(d.blank6));
 
+        e.setBlank7(str(d.blank7));
         e.setSqvLeadIntent(str(d.sqvLeadIntent));
         e.setLeadPriority(str(d.leadPriority));
         e.setClientCategory(str(d.clientCategory));
@@ -76,7 +78,7 @@ public class CallingEnquiryNormalizer {
     }
 
     /* -------- helpers -------- */
-
+/*
     private String str(Object o) {
         if (o == null) return null;
         String s = o.toString().trim();
@@ -105,6 +107,55 @@ public class CallingEnquiryNormalizer {
         try {
             return o == null ? null
                     : LocalDateTime.parse(o.toString().replace("Z", ""));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    */
+
+    /* ================= HELPERS ================= */
+
+    // -------- String Cleaner --------
+    private String str(Object o) {
+        if (o == null) return null;
+        String s = o.toString().trim();
+        return (s.isEmpty() || s.equalsIgnoreCase("NA")) ? null : s;
+    }
+
+    // -------- Boolean Cleaner (YES / NO SAFE) --------
+    private Boolean bool(Object o) {
+        if (o == null) return null;
+
+        String s = o.toString().trim().toLowerCase();
+        if (s.isEmpty() || s.equals("na")) return null;
+
+        if (s.equals("true") || s.equals("yes") || s.equals("1"))
+            return true;
+
+        if (s.equals("false") || s.equals("no") || s.equals("0"))
+            return false;
+
+        return null; // unknown / garbage value
+    }
+
+    // -------- Date (yyyy-MM-dd) --------
+    private LocalDate date(Object o) {
+        try {
+            if (o == null) return null;
+            return LocalDate.parse(o.toString().substring(0, 10));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    // -------- DateTime (ISO / Z safe) --------
+    private LocalDateTime dateTime(Object o) {
+        try {
+            if (o == null) return null;
+
+            String s = o.toString().replace("Z", "");
+            return LocalDateTime.parse(s, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
         } catch (Exception e) {
             return null;
         }
